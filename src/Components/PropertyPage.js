@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const PropertyPage = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   return (
     <div className="flex flex-col md:flex-row items-center md:justify-between p-6 bg-gray-100 rounded-lg shadow-lg">
       {/* Qoraalka dhinaca bidix */}
