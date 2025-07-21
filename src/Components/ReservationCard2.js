@@ -13,7 +13,7 @@ const ReservationCard2 = () => {
     e.preventDefault();
     const payload = { name, checkOut, phone, email };
     try {
-      await axios.post("http://localhost:3000/reserves", payload);
+      await axios.post(`${process.env.REACT_APP_API_URL}/reserves`, payload);
       alert("Reservation successful!");
     } catch (error) {
       alert("Failed to reserve.");

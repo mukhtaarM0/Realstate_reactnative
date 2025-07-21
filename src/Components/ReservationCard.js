@@ -14,7 +14,7 @@ const ReservationCard = () => {
     e.preventDefault();
     const payload = { checkIn, checkOut, guests, phone, email };
     try {
-      await axios.post("http://localhost:3000/reserve", payload);
+      await axios.post(`${process.env.REACT_APP_API_URL}/reserve`, payload);
       alert("Reservation successful!");
     } catch (error) {
       alert("Failed to reserve.");

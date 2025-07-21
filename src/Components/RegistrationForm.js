@@ -25,7 +25,7 @@ const RegistrationForm = () => {
     console.log('Submitted', values);
 
     try {
-      const response = await axios.post('http://localhost:3000/user', values);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user`, values);
       alert(`Welcome: ${response.data.message}`);
     } catch (error) {
       console.error('Error:', error.message);
