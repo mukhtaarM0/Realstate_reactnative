@@ -26,6 +26,7 @@ const RegistrationForm = () => {
 
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/user`, values);
+      console.log('Server Response:', response.data); // Waan ku daray tan
       alert(`Welcome: ${response.data.message}`);
     } catch (error) {
       console.error('Error:', error.message);
