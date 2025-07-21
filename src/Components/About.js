@@ -1,23 +1,24 @@
 import React from "react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import Footer from "./Footer";
 import Banner2 from "./Banner2";
+import Navbar from "./Navbar";
 
 function About() {
   return (
-    <>
+      <>
+      <Navbar/>
     <div className="about-container flex flex-col md:flex-row items-center md:items-start p-6">
       {/* Text Section */}
       <div className="md:w-1/2">
         <h1 className="text-5xl text-blue-600 font-bold mb-4">About Us</h1>
         <p className="mb-4">
-          Welcome to <strong>Aamin Real Estate</strong>, your trusted partner
+          Welcome to <strong>Real Company</strong>, your trusted partner
           in finding the perfect home, office space, or investment property. We
           are dedicated to offering the best real estate solutions, ensuring our
           clients find the property that fits their needs.
         </p>
         <p className="mb-4">
-          Since our establishment in 2022, <strong>Aamin Real Estate</strong> has grown 
+          Since our establishment in 2022, <strong>Real Company</strong> has grown 
           to become one of the most respected names in the industry. From residential
           properties to commercial spaces, we provide a wide range of real estate services.
         </p>

@@ -3,18 +3,17 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 
-const ReservationCard = () => {
-  const [checkIn, setCheckIn] = useState("");
+const ReservationCard3 = () => {
+  const [name, setName] = useState("");
   const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState("1 Family");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = { checkIn, checkOut, guests, phone, email };
+    const payload = { name, checkOut, phone, email };
     try {
-      await axios.post("http://localhost:3000/reserve", payload);
+      await axios.post("http://localhost:3000/reserves_guri", payload);
       alert("Reservation successful!");
     } catch (error) {
       alert("Failed to reserve.");
@@ -27,20 +26,16 @@ const ReservationCard = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="text-sm">xiliga-sogalista</label>
-            <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} className="w-full border p-2 rounded" />
-          </div>
+          <label className="text-sm">Full Name</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full border p-2 rounded" />
+        </div>
           <div>
-            <label className="text-sm">xiliga-kabixida</label>
+            <label className="text-sm">Date</label>
             <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} className="w-full border p-2 rounded" />
           </div>
         </div>
 
-        <select value={guests} onChange={(e) => setGuests(e.target.value)} className="w-full border p-2 rounded">
-          <option>1 Family</option>
-          <option>2 Families</option>
-          <option>Group</option>
-        </select>
+      
 
         <PhoneInput country={"so"} value={phone} onChange={setPhone} inputStyle={{ width: "100%" }} />
 
@@ -63,4 +58,4 @@ const ReservationCard = () => {
   );
 };
 
-export default ReservationCard;
+export default ReservationCard3;

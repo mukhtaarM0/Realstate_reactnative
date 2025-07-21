@@ -2,6 +2,7 @@ import React from "react";
 import { FaCheck } from "react-icons/fa";
 const Banner = () => {
   return (
+    
     <div className="w-full p-10 bg-gray-100 rounded-lg shadow-lg mt-16">
       <h3 className="text-2xl font-semibold text-gray-800">Why choose us?</h3>
       <h1 className="text-3xl font-bold text-blue-600 mt-2">

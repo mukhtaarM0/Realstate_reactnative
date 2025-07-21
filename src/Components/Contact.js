@@ -11,10 +11,12 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const Contact = () => {
   return (
     <>
+    <Navbar/>
     <div className="contact-container max-w-4xl mx-auto px-4 py-8 bg-white shadow-lg rounded-lg mt-16">
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
         Contact Us

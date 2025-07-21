@@ -6,9 +6,9 @@ const Herosec = () => {
   return (
     <div className="relative flex flex-col items-center justify-center h-screen bg-gray-100">
       {/* Image Section with Text Overlay */}
-      <div className="w-full h-[600px] mb-6 mt-24 p-4 relative">
+      <div className="w-full h-[600px] mb-6 mt-15 p-4 relative">
         <img
-          src="../image/body.jpg"
+          src="../image/ho.jpeg"
           alt="Beautiful vacation rental in Hargeisa"
           className="w-full h-full object-cover rounded-lg"
         />
@@ -29,7 +29,7 @@ const Herosec = () => {
       <div className="flex space-x-4 mb-20">
         <button
           onClick={() => setIsPopupOpen(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 transition duration-300"
+          className="bg-red-500 hover:bg-blue-600 text-white py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 transition duration-300"
         >
           Search for Rentals
         </button>

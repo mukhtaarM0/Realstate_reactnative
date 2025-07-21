@@ -1,136 +1,137 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import React from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { MdPerson, MdEmail, MdCall, MdLock } from 'react-icons/md';
+// import logo from '../assets/logo-bg.png';
+
+// VALIDATION SCHEMA
+const validationSchema = yup.object({
+  name: yup.string().required('Name is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
+  phone: yup.string().required('Phone is required'),
+  password: yup.string().required('Password is required'),
+});
 
 const RegistrationForm = () => {
-  const validationSchema = Yup.object({
-    name: Yup.string()
-      .required("Name is required")
-      .min(3, "Name must be at least 3 characters")
-      .max(30, "Name must be 30 characters or less"),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    password: Yup.string()
-      .required("Password is required")
-      .min(8, "Password must be at least 8 characters"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Confirm Password is required"),
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate('/login');
+  };
+
+  const handleSubmit = async (values) => {
+    console.log('Submitted', values);
+
+    try {
+      const response = await axios.post('http://localhost:3000/user', values);
+      alert(`Welcome: ${response.data.message}`);
+    } catch (error) {
+      console.error('Error:', error.message);
+      alert('Something went wrong!');
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      phone: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: handleSubmit,
   });
 
   return (
-    <div className="registration-container max-w-md mx-auto mt-10 bg-white p-8 shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
-        User Registration
-      </h2>
-      <Formik
-        initialValues={{
-          name: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        }}
-        validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log("Form data", values);
-        }}
-      >
-        {({ touched, errors }) => (
-          <Form>
-            <div className="form-group mb-4">
-              <label htmlFor="name" className="block text-gray-700 mb-2  w-32">
-                Name
-              </label>
-              <Field
-                name="name"
-                type="text"
-                placeholder="Enter your name"
-                className={`form-input w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  touched.name && errors.name ? "border-red-500" : ""
-                }`}
-              />
-              <ErrorMessage
-                component="div"
-                name="name"
-                className="text-red-500 mt-1"
-              />
-            </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
+      {/* <img src={logo} alt="Logo" className="w-72 h-64 object-contain mb-2" /> */}
+      <p className="text-lg font-bold mb-2 w-full max-w-md text-center mx-auto ">SIGN UP</p>
 
-            <div className="form-group mb-4">
-              <label htmlFor="email" className="block text-gray-700 mb-2  w-32">
-                Email
-              </label>
-              <Field
-                name="email"
-                type="email"
-                placeholder="Enter your email"
-                className={`form-input w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  touched.email && errors.email ? "border-red-500" : ""
-                }`}
-              />
-              <ErrorMessage
-                component="div"
-                name="email"
-                className="text-red-500 mt-1"
-              />
-            </div>
 
-            <div className="form-group mb-4">
-              <label
-                htmlFor="password"
-                className="block text-gray-700 mb-2 w-32"
-              >
-                Password
-              </label>
-              <Field
-                name="password"
-                type="password"
-                placeholder="Enter your password"
-                className={`form-input w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  touched.password && errors.password ? "border-red-500" : ""
-                }`}
-              />
-              <ErrorMessage
-                component="div"
-                name="password"
-                className="text-red-500 mt-1"
-              />
-            </div>
-
-            <div className="form-group mb-4">
-              <label
-                htmlFor="confirmPassword"
-                className="block text-gray-700 mb-2 w-32"
-              >
-                Confirm Password
-              </label>
-              <Field
-                name="confirmPassword"
-                type="password"
-                placeholder="Confirm your password"
-                className={`form-input w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  touched.confirmPassword && errors.confirmPassword
-                    ? "border-red-500"
-                    : ""
-                }`}
-              />
-              <ErrorMessage
-                component="div"
-                name="confirmPassword"
-                className="text-red-500 mt-1"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="submit-button w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 "
-            >
-              Register
-            </button>
-          </Form>
+      <form onSubmit={formik.handleSubmit} className="w-full max-w-md space-y-4">
+        {/* Name Field */}
+        <div className="flex items-center bg-white border border-gray-300 rounded-xl px-3 py-2">
+          <MdPerson className="text-gray-400 mr-2" />
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter Your Full Name"
+            className="flex-1 outline-none text-gray-800"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+          />
+        </div>
+        {formik.touched.name && formik.errors.name && (
+          <p className="text-red-500 text-sm">{formik.errors.name}</p>
         )}
-      </Formik>
+
+        {/* Email Field */}
+        <div className="flex items-center bg-white border border-gray-300 rounded-xl px-3 py-2">
+          <MdEmail className="text-gray-400 mr-2" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter Your Email"
+            className="flex-1 outline-none text-gray-800"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+          />
+        </div>
+        {formik.touched.email && formik.errors.email && (
+          <p className="text-red-500 text-sm">{formik.errors.email}</p>
+        )}
+
+        {/* Phone Field */}
+        <div className="flex items-center bg-white border border-gray-300 rounded-xl px-3 py-2">
+          <MdCall className="text-gray-400 mr-2" />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Enter Your Phone Number"
+            className="flex-1 outline-none text-gray-800"
+            value={formik.values.phone}
+            onChange={formik.handleChange}
+          />
+        </div>
+        {formik.touched.phone && formik.errors.phone && (
+          <p className="text-red-500 text-sm">{formik.errors.phone}</p>
+        )}
+
+        {/* Password Field */}
+        <div className="flex items-center bg-white border border-gray-300 rounded-xl px-3 py-2">
+          <MdLock className="text-gray-400 mr-2" />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter Your Password"
+            className="flex-1 outline-none text-gray-800"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+          />
+        </div>
+        {formik.touched.password && formik.errors.password && (
+          <p className="text-red-500 text-sm">{formik.errors.password}</p>
+        )}
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-red-500 hover:bg-white-600 text-black font-semibold py-2 rounded-xl shadow-md transition duration-200"
+        >
+          Sign Up
+        </button>
+
+        {/* Redirect to Login */}
+        <button
+          type="button"
+          onClick={handleRedirect}
+          className="w-full bg-red-500 hover:bg-white-600 text-black font-semibold py-2 rounded-xl shadow-md transition duration-200"
+        >
+          Login
+        </button>
+      </form>
     </div>
   );
 };

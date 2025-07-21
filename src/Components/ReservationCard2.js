@@ -1,100 +1,57 @@
-import React, { useState } from 'react';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import React, { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import axios from "axios";
 
 const ReservationCard2 = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-  });
+  const [name, setName] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Submitted:', formData);
+    const payload = { name, checkOut, phone, email };
+    try {
+      await axios.post("http://localhost:3000/reserves", payload);
+      alert("Reservation successful!");
+    } catch (error) {
+      alert("Failed to reserve.");
+    }
   };
-
-  const [phone, setPhone] = useState('');
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-6 pt-4">
-      <h2 className="text-2xl font-bold text-center mb-6">Regester Now</h2>
-
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Magacaaga"
-            required
-          />
+    <div className="max-w-md mx-auto p-6 bg-white rounded shadow mt-10">
+      <h2 className="text-center text-xl font-bold mb-4">Register</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+          <label className="text-sm">Full Name</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full border p-2 rounded" />
+        </div>
+          <div>
+            <label className="text-sm">Date</label>
+            <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} className="w-full border p-2 rounded" />
+          </div>
         </div>
 
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Email-kaaga"
-            required
-          />
-        </div>
+      
 
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
-            Phone Number
-          </label>
-          <PhoneInput
-            country={'so'}
-            value={phone}
-            onChange={setPhone}
-            inputClass="w-full mt-1 p-2 border border-gray-200 rounded-md text-sm"
-          />
-        </div>
+        <PhoneInput country={"so"} value={phone} onChange={setPhone} inputStyle={{ width: "100%" }} />
 
-        <div className="flex justify-between mt-6 space-x-2">
+        <input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full border p-2 rounded" />
+
+        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Reserve</button>
+
+        <p className="text-center text-sm text-gray-500">You won’t be charged yet</p>
+        <div className="text-center">
           <button
-            type="submit"
-            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-          >
-            Submit
-          </button>
-          
-          <a
-            href="/Dhulkaiibkaah"
-            className="flex-1 bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-blue-700 transition duration-300 text-center"
+            type="button"
+            onClick={() => window.history.back()}
+            className="text-blue-600 bg-transparent border-none p-0 cursor-pointer hover:underline"
           >
             Go Back
-          </a>
-
-          <a
-            href="https://wa.me/+252634785136" // Replace with your WhatsApp link
-            className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 text-center"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WhatsApp
-          </a>
+          </button>
         </div>
       </form>
     </div>

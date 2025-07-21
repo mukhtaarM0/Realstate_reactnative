@@ -1,6 +1,5 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Navbar";
 import About from "./Components/About";
 import RegistrationForm from "./Components/RegistrationForm";
 import Contact from "./Components/Contact";
@@ -24,6 +23,7 @@ import ProCard4 from "./Components/ProCard4";
 import ProCard5 from "./Components/ProCard5";
 import Footer from "./Components/Footer";
 import ReservationCard2 from "./Components/ReservationCard2";
+import ReservationCard3 from "./Components/ReservationCard3";
 import NewArrivalsPage from "./Components/NewArrivalsPage";
 import Guryahaiibkaah from "./Components/Guryahaiibkaah";
 
@@ -32,13 +32,14 @@ import Guryahaiibkaah from "./Components/Guryahaiibkaah";
 function App() {
   return (
     <div className="App">
-      <Navbar />
+  
       <Routes>
+        <Route path="/" element={<Login />} /> {/* Default route */}
+        <Route path="/Login" element={<Login />}></Route>
         <Route path="/Home" element={<Home />}></Route>
         <Route path="/About" element={<About />}></Route>
         <Route path="/Contact" element={<Contact />}></Route>
         <Route path="/RegistrationForm" element={<RegistrationForm />}></Route>
-        <Route path="/Login" element={<Login />}></Route>
         <Route path="/Cardinfo" element={<Cardinfo />}></Route>
         <Route path="/Guryaha" element={<Guryaha />}></Route>
         <Route path="/Dhulkaiibkaah" element={<Dhulkaiibkaah />}></Route>
@@ -57,6 +58,7 @@ function App() {
         <Route path="/ProCard5" element={<ProCard5 />} />
         <Route path="/Footer" element={<Footer />} />
         <Route path="/ReservationCard2" element={<ReservationCard2 />} />
+        <Route path="/ReservationCard3" element={<ReservationCard3 />} />
         <Route path="/NewArrivalsPage" element={<NewArrivalsPage />} />
         <Route path="/Guryahaiibkaah" element={<Guryahaiibkaah />} />
         

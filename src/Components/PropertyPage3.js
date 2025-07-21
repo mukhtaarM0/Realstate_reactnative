@@ -16,17 +16,18 @@ const PropertyPage3 = () => {
     </ul>
     <div className="flex space-x-4">
       <Link
-        to="/ReservationCard"
+        to="/ReservationCard3"
         className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
       >
         Kirayso
       </Link>
-      <a
-        href="javascript:history.back()"
+      <button
+        type="button"
+        onClick={() => window.history.back()}
         className="bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded hover:bg-gray-300 hover:text-blue-700 transition duration-300"
       >
         Go Back
-      </a>
+      </button>
     </div>
   </div>
 </div>

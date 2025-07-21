@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "./Footer"
+import Navbar from "./Navbar"
 const Guryaha = () => { 
   return (
     <>
+    <Navbar/>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center ">
         <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white m-4">
           {/* Image section */}

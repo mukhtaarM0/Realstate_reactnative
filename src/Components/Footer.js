@@ -3,14 +3,14 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/f
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-600 text-gray-200 py-8 mt-12">
+    <footer className="bg-red-600 text-gray-200 py-8 mt-12">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo Section */}
         <div>
         <img
           className="logo h-16 w-auto object-contain mx-auto"
-          src="../image/logo2.png"
-         
+          src="../image/logo333.png"
+          alt="Company Logo"
         />
         
         </div>

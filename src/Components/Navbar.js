@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -13,9 +12,9 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <img
-          className="h-16 w-auto object-contain"
-          src="../image/logo.png"
-          alt="klakks"
+          className="h-20 w-auto object-contain"
+          src="../image/logo77.png"
+          alt="no"
         />
 
         {/* Menu Button for Mobile */}
@@ -49,22 +48,22 @@ const Navbar = () => {
         >
           <ul className="flex space-x-6">
             <li>
-              <a href="/Home" className="text-black hover:text-blue-600 font-semibold transition">
+              <a href="/Home" className="text-black hover:text-red-600 font-semibold transition">
                 Home
               </a>
             </li>
             <li>
-              <a href="/About" className="text-black hover:text-blue-600 font-semibold transition">
+              <a href="/About" className="text-black hover:text-red-600 font-semibold transition">
                 About
               </a>
             </li>
             <li>
-              <a href="/Contact" className="text-black hover:text-blue-600 font-semibold transition">
+              <a href="/Contact" className="text-black hover:text-red-600 font-semibold transition">
                 Contact
               </a>
             </li>
             <li>
-              <a href="/NewArrivalsPage" className="text-black hover:text-blue-600 font-semibold transition">
+              <a href="/NewArrivalsPage" className="text-black hover:text-red-600 font-semibold transition">
                 what is new!
               </a>
             </li>
@@ -75,13 +74,13 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-4">
           <Link
             to="/Login"
-            className="bg-white text-black border border-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded transition duration-300"
+            className="bg-red text-black border border-red-600 hover:bg-red-600 hover:text-white font-bold py-2 px-4 rounded transition duration-300"
           >
             Login
           </Link>
           <Link
             to="/RegistrationForm"
-            className="bg-blue-500 text-white hover:bg-white hover:text-black border border-blue-600 font-bold py-2 px-4 rounded transition duration-300"
+            className="bg-red-500 text-white hover:bg-white hover:text-black border border-red-600 font-bold py-2 px-4 rounded transition duration-300"
           >
             Sign Up
           </Link>
@@ -110,18 +109,21 @@ const Navbar = () => {
             <li>
               <Link
                 to="/Login"
-                className="block bg-white text-black border border-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded transition duration-300"
+                className=" bg-red text-black border border-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2 px-4 rounded transition duration-300"
               >
                 Login
               </Link>
             </li>
             <li>
-              <Link
-                to="/RegistrationForm"
-                className="block bg-blue-500 text-white hover:bg-white hover:text-black border border-blue-600 font-bold py-2 px-4 rounded transition duration-300"
-              >
-                Sign Up
-              </Link>
+            <Link
+           to="/RegistrationForm"
+           className="bg-red-500 text-white hover:bg-red-600 hover:text-black border border-red-600 font-bold py-2 px-4 rounded transition duration-300 no-underline"
+           >
+           Sign Up
+           </Link>
+        
+
+
             </li>
           </ul>
         </div>
